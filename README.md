@@ -1,0 +1,55 @@
+# MC1 — Guía de Estudio Interactiva
+
+Página de estudio interactiva para **Métodos Cuantitativos 1** (estadística y probabilidad aplicada a medicina, dentro de Metodología Científica 1).
+
+Todo el material original en PDF (clases, diapositivas, prácticos, artículos, tablas y hoja de fórmulas) fue convertido a Markdown y organizado por tema. El progreso de estudio se guarda localmente en el navegador (no requiere backend ni login).
+
+## Estructura
+
+```
+mc1-estudio-interactivo/
+├── index.html         ← página principal
+├── app.js              ← navegación, búsqueda, progreso (localStorage), render de Markdown + LaTeX
+├── style.css           ← tema visual
+└── content/
+    ├── repaso/          ← variables, medidas de resumen, probabilidad básica
+    ├── discretas/        ← distribución Binomial y de Poisson
+    ├── continuas/         ← distribución Normal y Teorema del Límite Central
+    ├── inferencia/         ← estimación e intervalos de confianza
+    ├── diagnostico/         ← sensibilidad, especificidad, VPP, VPN, LR
+    ├── contraste/            ← contraste de hipótesis para medias
+    ├── avanzado/              ← muestras pareadas, proporciones, chi², riesgo, correlación
+    ├── practicos/              ← prácticos de la materia con sus respuestas
+    ├── referencia/              ← hoja de fórmulas y tablas estadísticas (Z, t, Binomial, Poisson)
+    └── articulos/                ← artículos científicos usados en los prácticos
+```
+
+## Cómo se generó el contenido
+
+Los PDF originales estaban en `Materiales/`. Se procesaron en dos vías:
+
+- **PDFs con texto seleccionable** → convertidos a Markdown con [MarkItDown](https://github.com/microsoft/markitdown) y luego reformateados (fórmulas a LaTeX, tablas a Markdown GFM, limpieza de ruido de extracción).
+- **PDFs escaneados / solo imágenes** (varias diapositivas de clase no tenían capa de texto) → renderizados página por página y transcriptos manualmente preservando fórmulas, ejemplos numéricos y tablas.
+
+Las tablas estadísticas de referencia (Z, t, Binomial, Poisson) se mantienen como imágenes de alta resolución en vez de transcribirse número por número, para evitar errores de transcripción en valores que se usan para calcular resultados.
+
+## Cómo verlo localmente
+
+No hace falta build ni backend: es un sitio estático. Abrí `index.html` a través de un servidor local (por ejemplo `npx serve` o la extensión "Live Server" de VS Code) — abrirlo con `file://` directo puede bloquear el `fetch()` de los archivos Markdown en algunos navegadores.
+
+```bash
+npx serve .
+```
+
+## Publicarlo en GitHub Pages
+
+1. Creá un repositorio en GitHub (por ejemplo `mc1-estudio-interactivo`).
+2. Subí este contenido a la rama `main`.
+3. En **Settings → Pages**, elegí la rama `main` y la carpeta raíz (`/`).
+4. La página va a quedar disponible en `https://<tu-usuario>.github.io/mc1-estudio-interactivo/`.
+
+El archivo `.nojekyll` ya está incluido para que GitHub Pages sirva las carpetas y archivos tal cual están (sin el procesamiento de Jekyll).
+
+---
+
+*Material compilado a partir de los apuntes y diapositivas de la cátedra de Métodos Cuantitativos.*

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MC1 - Guía de Estudio Interactiva</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Highlight.js (Atom One Dark Theme) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-background"></div>
+    <div class="app-container">
+
+        <!-- Mobile topbar toggle -->
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menú">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <i class="fa-solid fa-chart-line logo-icon"></i>
+                    <div>
+                        <h1>MC1 Estudio</h1>
+                        <p>Métodos Cuantitativos</p>
+                    </div>
+                </div>
+
+                <div class="search-container">
+                    <i class="fa-solid fa-search search-icon"></i>
+                    <input type="text" id="search-input" placeholder="Buscar tema (ej. Poisson)...">
+                </div>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-header">
+                    <span>Progreso Total</span>
+                    <span id="progress-percentage">0%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progress-bar"></div>
+                </div>
+            </div>
+
+            <div class="sidebar-tabs" id="sidebar-tabs"></div>
+
+            <nav class="sidebar-nav" id="sidebar-nav">
+                <!-- Links generados dinámicamente -->
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topic-info">
+                    <div class="topic-category-badge" id="current-category-badge">General</div>
+                    <div class="topic-title" id="current-topic-title">Bienvenido</div>
+                </div>
+                <div class="actions">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="topic-checkbox" disabled>
+                        <div class="checkmark"></div>
+                        <span class="checkbox-label">Marcar como completado</span>
+                    </label>
+                </div>
+            </header>
+
+            <div class="content-wrapper" id="content-wrapper">
+                <div class="markdown-body" id="markdown-content">
+                    <div class="loader-container">
+                        <div class="loader"></div>
+                        <h2>Cargando contenido...</h2>
+                        <p>Asegúrate de estar ejecutando esto a través de un servidor local o GitHub Pages.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
