@@ -1,0 +1,93 @@
+{
+  "title": "Autoevaluación: Inferencia Estadística",
+  "questions": [
+    {
+      "question": "¿Cuál de las siguientes afirmaciones distingue correctamente un parámetro poblacional de un estimador?",
+      "options": [
+        "El parámetro varía de muestra en muestra, mientras que el estimador es un valor fijo y constante.",
+        "Son sinónimos: el parámetro es simplemente el nombre que recibe el estimador una vez que se calculó su valor numérico en la muestra.",
+        "El parámetro es un valor fijo pero desconocido de la población (como $\\mu$ o $p$); el estimador es un estadístico calculado en la muestra (como $\\bar{x}$ o $\\hat{p}$) que varía de muestra en muestra.",
+        "El parámetro se calcula a partir de los datos de la muestra, mientras que el estimador es un valor teórico que solo existe en la población."
+      ],
+      "correctIndex": 2,
+      "explanation": "Correcto: un parámetro (por ejemplo $\\mu$, $p$, $\\sigma^2$) es una característica fija pero desconocida de toda la población; no cambia porque no depende de qué muestra se tome. Un estadístico —y en particular un estimador, que es el estadístico usado para aproximar un parámetro— se calcula con los datos muestrales (por ejemplo $\\bar{x}$ o $\\hat{p}$) y sí varía de muestra en muestra por el azar del muestreo (variabilidad muestral). La opción A invierte los roles: es el parámetro el que es fijo, no el estimador. La opción B confunde el estadístico calculado con el parámetro que se busca estimar: son conceptualmente distintos aunque estén relacionados (uno se usa para aproximar al otro). La opción D también invierte la relación: el parámetro es la característica poblacional (no se calcula con la muestra) y el estimador sí se calcula con los datos muestrales."
+    },
+    {
+      "question": "En un estudio sobre aneurisma de aorta abdominal, se tomó una muestra de 512 pacientes y se calculó que el diámetro promedio de los aneurismas fue de 39.5 mm. Este único valor, usado para representar el diámetro promedio poblacional, es un ejemplo de:",
+      "options": [
+        "Estimación por intervalo, porque incorpora el error de muestreo en el resultado.",
+        "Estimación puntual, porque le atribuye al parámetro poblacional desconocido un único valor calculado en la muestra.",
+        "Un parámetro poblacional, ya que proviene de datos reales medidos en pacientes.",
+        "Un nivel de confianza, porque resume qué tan preciso es el resultado obtenido."
+      ],
+      "correctIndex": 1,
+      "explanation": "Correcto: la estimación puntual consiste en asignarle al parámetro desconocido (en este caso, la media poblacional del diámetro) el valor puntual calculado en la muestra ($\\bar{x}=39.5$ mm), sin indicar ningún rango de valores plausibles ni el error asociado. La opción A es incorrecta porque un único número no transmite información sobre la imprecisión de la estimación; para eso se necesita un intervalo de confianza, que sí incorpora explícitamente el margen de error. La opción C confunde el estadístico muestral con el parámetro poblacional: 39.5 mm es lo que se calculó en la muestra, no el verdadero valor poblacional (que es desconocido). La opción D es incorrecta porque un nivel de confianza (como 90%, 95% o 99%) es una probabilidad asociada a un procedimiento de intervalo, no un valor de la variable medida."
+    },
+    {
+      "question": "Se calculó un intervalo de confianza del 95% para la presión sistólica media poblacional, obteniéndose $[148.6;\\,151.4]$ mmHg. ¿Cuál es la interpretación correcta de este resultado?",
+      "options": [
+        "Hay un 95% de probabilidad de que la verdadera media poblacional $\\mu$ se encuentre entre 148.6 y 151.4.",
+        "El 95% de los pacientes de la población tienen una presión sistólica de entre 148.6 y 151.4 mmHg.",
+        "Existe un 95% de probabilidad de que la media muestral $\\bar{x}$ coincida exactamente con la media poblacional $\\mu$.",
+        "Si se repitiera el proceso de muestreo muchas veces y se calculara un intervalo de confianza del 95% en cada muestra, aproximadamente el 95% de esos intervalos contendrían a la verdadera media poblacional $\\mu$."
+      ],
+      "correctIndex": 3,
+      "explanation": "Correcto: $\\mu$ es una constante fija (aunque desconocida), no una variable aleatoria; una vez tomada la muestra, el intervalo calculado también queda fijo. Por eso no es correcto decir que hay '95% de probabilidad' de que $\\mu$ esté en ESE intervalo particular (opción A): un número fijo o está dentro de un intervalo fijo o no lo está, no hay probabilidad involucrada en ese caso puntual. Lo que sí tiene sentido probabilístico es el procedimiento: si repitiéramos el muestreo muchas veces y construyéramos un IC del 95% en cada muestra, esperaríamos que el 95% de esos intervalos (que sí son aleatorios, porque dependen de $\\bar{x}$) contengan a $\\mu$ (opción D, correcta). La opción B confunde el intervalo de confianza para la media poblacional con un rango que contendría al 95% de los valores individuales de la población (eso sería otro tipo de intervalo, no un IC para $\\mu$). La opción C no tiene sentido: la media muestral casi nunca coincide exactamente con la poblacional, y el IC no habla de esa coincidencia sino de un rango plausible."
+    },
+    {
+      "question": "En una población con desvío estándar conocido $\\sigma = 8$, se toma una muestra aleatoria de tamaño $n=64$ y se obtiene una media muestral $\\bar{x}=100$. Usando $Z_{0.025}=1.96$, ¿cuál es el intervalo de confianza del 95% para la media poblacional?",
+      "options": [
+        "$[98.04;\\,101.96]$, calculado como $100 \\pm 1.96\\times(8/\\sqrt{64})$",
+        "$[84.32;\\,115.68]$, calculado como $100 \\pm 1.96\\times 8$ (sin dividir por $\\sqrt{n}$)",
+        "$[99.76;\\,100.25]$, calculado como $100 \\pm 1.96\\times(8/64)$ (dividiendo por $n$ en vez de $\\sqrt{n}$)",
+        "$[98.36;\\,101.64]$, calculado como $100 \\pm 1.64\\times(8/\\sqrt{64})$ (usando el $Z$ del 90% en vez del 95%)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correcto: el error estándar es $SE=\\sigma/\\sqrt{n}=8/\\sqrt{64}=8/8=1$, y el margen de error es $Z_{\\alpha/2}\\times SE = 1.96\\times1=1.96$. El intervalo queda $100\\pm1.96=[98.04;101.96]$, siguiendo la fórmula $IC_{1-\\alpha}=\\bar{x}\\pm z_{\\alpha/2}\\times\\sigma/\\sqrt{n}$. La opción B comete el error de no dividir $\\sigma$ por $\\sqrt{n}$, tratando el desvío poblacional completo como si fuera el error estándar, lo que produce un intervalo mucho más ancho de lo que corresponde. La opción C divide por $n$ en lugar de $\\sqrt{n}$, produciendo un error estándar y un intervalo artificialmente angostos. La opción D usa $Z_{0.05}=1.64$ (correspondiente a un nivel de confianza del 90%) en lugar del $Z_{0.025}=1.96$ que corresponde al 95% solicitado."
+    },
+    {
+      "question": "En una muestra de tamaño $n=20$ se obtuvo una media $\\bar{x}=150$ mmHg y una varianza muestral $s^2=9$. La variable tiene distribución normal, pero se desconoce la varianza poblacional. Usando $t_{0.025,19}=2.086$, ¿qué procedimiento y resultado son correctos para el IC del 95%?",
+      "options": [
+        "Usar la distribución normal $Z$: $IC = 150 \\pm 1.96\\times(3/\\sqrt{20}) = [148.68;\\,151.32]$",
+        "Usar la distribución $t$ de Student con $20$ grados de libertad: $IC = 150 \\pm 2.086\\times(9/\\sqrt{20})$",
+        "Usar la distribución $t$ de Student con $19$ grados de libertad: $IC = 150 \\pm 2.086\\times(3/\\sqrt{20}) = [148.60;\\,151.39]$",
+        "Usar la distribución normal $Z$: $IC = 150 \\pm 1.96\\times(9/20)$"
+      ],
+      "correctIndex": 2,
+      "explanation": "Correcto: cuando la varianza poblacional $\\sigma^2$ es desconocida, se la estima con la varianza muestral $s^2=9$, por lo que $s=\\sqrt{9}=3$ (el desvío, no la varianza, es lo que entra en la fórmula del error estándar). Además, al reemplazar $\\sigma$ por su estimación $s$ el estadístico ya no sigue una distribución normal exacta sino una distribución $t$ de Student, con $n-1=19$ grados de libertad: $IC=\\bar{x}\\pm t_{\\alpha/2,n-1}\\times s/\\sqrt{n} = 150\\pm2.086\\times(3/\\sqrt{20})=[148.60;151.39]$. La opción A usa $Z$ en lugar de $t$, lo cual solo sería aceptable si $n$ fuera grande (convencionalmente mayor a 30); con $n=20$ corresponde usar $t$. Las opciones B y D cometen además el error de usar $s^2=9$ directamente en la fórmula en lugar de $s=3$ (confunden varianza con desvío estándar), y B usa $n$ en lugar de $n-1$ grados de libertad."
+    },
+    {
+      "question": "En una muestra aleatoria de 100 individuos, 30 resultaron fumadores. Usando $Z_{0.025}=1.96$, ¿cuál es el intervalo de confianza del 95% para la proporción poblacional de fumadores?",
+      "options": [
+        "$[0.23;\\,0.37]$, calculado usando $Z=1.64$ (el valor correspondiente a un IC del 90%, no del 95%)",
+        "$[0.21;\\,0.39]$, calculado como $0.3\\pm1.96\\times\\sqrt{0.3(1-0.3)/100}$",
+        "$[0.18;\\,0.42]$, calculado usando $Z=2.58$ (el valor correspondiente a un IC del 99%, no del 95%)",
+        "$[0.296;\\,0.304]$, calculado como $0.3\\pm1.96\\times[0.3(1-0.3)/100]$, sin aplicar la raíz cuadrada al error estándar"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correcto: la proporción muestral es $\\hat{p}=30/100=0.3$, y el error estándar es $\\sqrt{\\hat{p}(1-\\hat{p})/n}=\\sqrt{0.21/100}\\approx0.0458$. El margen de error es $1.96\\times0.0458\\approx0.09$, y el intervalo queda $0.3\\pm0.09=[0.21;0.39]$, siguiendo $IC_{1-\\alpha}=\\hat{p}\\pm z_{\\alpha/2}\\times\\sqrt{\\hat{p}(1-\\hat{p})/n}$. Las opciones A y C usan el valor de $Z$ que corresponde a otro nivel de confianza (90% y 99% respectivamente) en lugar del $Z_{0.025}=1.96$ que corresponde al 95% pedido: a menor confianza el intervalo es más angosto de lo que debería, y a mayor confianza, más ancho. La opción D olvida aplicar la raíz cuadrada al calcular el error estándar, usando la varianza del estimador directamente como si fuera el error estándar, lo que produce un intervalo artificialmente angosto y una imprecisión que no refleja la variabilidad real del estimador."
+    },
+    {
+      "question": "¿Cuál de las siguientes afirmaciones sobre la longitud (ancho) del intervalo de confianza para la media es correcta?",
+      "options": [
+        "A mayor tamaño muestral $n$ (manteniendo fijos el nivel de confianza y $\\sigma$), el intervalo se vuelve más angosto (mayor precisión); en cambio, a mayor nivel de confianza (por ejemplo, de 90% a 99%), el intervalo se vuelve más ancho porque $Z_{\\alpha/2}$ aumenta.",
+        "A mayor nivel de confianza, el intervalo se vuelve más angosto, porque hay menos incertidumbre sobre dónde está la media poblacional.",
+        "El tamaño muestral no afecta la longitud del intervalo; solo el nivel de confianza la determina.",
+        "Aumentar el tamaño muestral y aumentar el nivel de confianza producen el mismo efecto: ambos angostan el intervalo por igual."
+      ],
+      "correctIndex": 0,
+      "explanation": "Correcto: la longitud del intervalo es $L=2\\times Z_{\\alpha/2}\\times SE$, con $SE=\\sigma/\\sqrt{n}$. Como $n$ aparece dentro de una raíz cuadrada en el denominador del $SE$, aumentar $n$ reduce el $SE$ y por lo tanto angosta el intervalo (de hecho, para reducir la longitud a un tercio hace falta aumentar la muestra 9 veces, ya que $n_2=k^2\\times n_1$). En cambio, $Z_{\\alpha/2}$ aumenta con el nivel de confianza (1.64 para 90%, 1.96 para 95%, 2.58 para 99%), por lo que exigir mayor confianza ensancha el intervalo: hay un costo en precisión a cambio de mayor seguridad de 'atrapar' a $\\mu$. La opción B comete el error conceptual opuesto: confunde 'más confianza' con 'más precisión', cuando en realidad son objetivos en tensión. La opción C ignora el efecto del tamaño muestral, que es central en la fórmula del error estándar. La opción D es incorrecta porque ambos factores actúan en sentidos opuestos sobre la longitud del intervalo, no en el mismo sentido."
+    },
+    {
+      "question": "Se desea estimar una media poblacional con una imprecisión (margen de error) de $I=2$ unidades y una confianza del 95%, sabiendo que el desvío estándar poblacional es $\\sigma=5$. Usando $Z_{0.025}=1.96$, ¿cuál es el tamaño muestral mínimo necesario?",
+      "options": [
+        "$n=1.96\\times5^2/2^2\\approx12.25$, que se redondea a $n=13$ (sin elevar $Z$ al cuadrado)",
+        "$n=(1.96)^2\\times5/2^2\\approx4.80$, que se redondea a $n=5$ (usando $\\sigma$ en vez de $\\sigma^2$)",
+        "$n=(1.96)^2\\times5^2/2\\approx48.02$, que se redondea a $n=49$ (dividiendo por $I$ en vez de $I^2$)",
+        "$n=(1.96)^2\\times5^2/2^2\\approx24.01$, que se redondea hacia arriba a $n=25$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Correcto: la fórmula para el tamaño muestral necesario al estimar una media es $n=(z_{\\alpha/2})^2\\times\\sigma^2/I^2$. Sustituyendo: $n=(1.96)^2\\times5^2/2^2=3.8416\\times25/4\\approx24.01$. Como el tamaño muestral siempre se redondea hacia arriba (para garantizar al menos la precisión deseada), el resultado final es $n=25$. La opción A olvida elevar $Z_{\\alpha/2}$ al cuadrado, lo que subestima considerablemente el $n$ requerido. La opción B usa $\\sigma$ en lugar de $\\sigma^2$ en el numerador, otro error frecuente que también subestima el tamaño necesario. La opción C usa $I$ en lugar de $I^2$ en el denominador, lo que sobrestima el tamaño muestral requerido. Es importante recordar que tanto $Z_{\\alpha/2}$ como $\\sigma$ (o $I$) deben elevarse al cuadrado según corresponda en esta fórmula."
+    }
+  ]
+}

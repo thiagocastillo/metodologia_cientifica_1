@@ -1,0 +1,93 @@
+{
+  "title": "Autoevaluación: Repaso y Probabilidad Básica",
+  "questions": [
+    {
+      "question": "En una historia clínica se registra el estadio de un tumor como I, II, III o IV, según su gravedad creciente. ¿Qué tipo de variable es y en qué escala se mide?",
+      "options": [
+        "Cualitativa nominal",
+        "Cualitativa ordinal",
+        "Cuantitativa discreta",
+        "Cuantitativa continua"
+      ],
+      "correctIndex": 1,
+      "explanation": "Es cualitativa porque describe una cualidad (la gravedad del tumor) mediante categorías, no una cantidad numérica real; y es ordinal porque esas categorías pueden ordenarse (I < II < III < IV), aunque la diferencia entre estadios no sea necesariamente constante ni cuantificable: solo sabemos 'mayor que' o 'menor que', no 'cuánto más'. No es nominal, porque en la escala nominal el orden no importa (como en el grupo sanguíneo), y aquí sí importa. Tampoco es cuantitativa: aunque se usen números romanos o arábigos para nombrar los estadios, esos números solo cumplen función de etiqueta y no representan una magnitud que se pueda sumar, restar o promediar (no tiene sentido decir que el estadio III es '1,5 veces' el estadio II)."
+    },
+    {
+      "question": "La temperatura corporal se mide en grados Celsius. ¿En qué escala de medida se encuentra esta variable?",
+      "options": [
+        "Nominal",
+        "Ordinal",
+        "De intervalo",
+        "De razón"
+      ],
+      "correctIndex": 2,
+      "explanation": "Es una variable cuantitativa continua medida en escala de intervalo: las diferencias entre valores son constantes y tienen sentido (la diferencia entre 37 °C y 38 °C es igual a la diferencia entre 38 °C y 39 °C), pero el cero (0 °C) no representa ausencia de temperatura, sino un punto fijado por convención (congelación del agua) — es un 'cero relativo'. Por eso no puede decirse que 40 °C sea 'el doble de caliente' que 20 °C. Si se usara la escala Kelvin sí sería de razón, porque el 0 K representa ausencia total de energía térmica (cero absoluto). Las opciones nominal y ordinal son incorrectas porque esas escalas se usan para variables cualitativas, y la temperatura es una variable cuantitativa."
+    },
+    {
+      "question": "En una guardia se registró el número de días de internación de 9 pacientes: 2, 5, 5, 3, 7, 5, 4, 3, 3. ¿Cuál es la moda de esta distribución?",
+      "options": [
+        "5, porque es el valor mayor que se repite",
+        "4, porque es el valor central de la distribución",
+        "3 y 5, la distribución es bimodal porque ambos valores se repiten con la misma frecuencia máxima (3 veces)",
+        "No existe moda porque los valores no se repiten de forma consistente"
+      ],
+      "correctIndex": 2,
+      "explanation": "La moda es el valor (o valores) más frecuente en un conjunto de datos. Contando las repeticiones: el 3 aparece 3 veces, el 5 aparece 3 veces, y el resto (2, 7 y 4) aparece una sola vez cada uno. Como dos valores comparten la frecuencia máxima, la distribución es bimodal y tanto el 3 como el 5 son moda. La opción A es incorrecta porque la moda se define por frecuencia, no por magnitud ('el valor mayor que se repite' no es el criterio). La opción B confunde moda con mediana, que sí es el valor central de una serie ordenada. La opción D es incorrecta porque sí hay repeticiones claras; solo diríamos que 'no hay moda' si todos los valores tuvieran exactamente la misma frecuencia."
+    },
+    {
+      "question": "Un grupo de 7 pacientes tiene los siguientes valores de glicemia (mg/dl): 85, 90, 88, 92, 87, 89, 310 (este último por un error de laboratorio). ¿Qué medida de tendencia central conviene usar para resumir estos datos y por qué?",
+      "options": [
+        "La media, porque siempre es el estadístico más preciso",
+        "La mediana, porque no se ve afectada por el valor extremo (310) y sigue reflejando el valor típico del grupo",
+        "La moda, porque es la medida más utilizada en estadística médica",
+        "El rango, porque muestra la dispersión total de los datos"
+      ],
+      "correctIndex": 1,
+      "explanation": "Cuando existen valores extremos o errores de medición, la media se distorsiona fuertemente porque su cálculo incluye a todas las observaciones (el 310 'arrastra' el promedio muy por encima de los valores típicos). La mediana, en cambio, solo depende de la posición central de los datos ordenados, por lo que es un estadístico más 'robusto' o 'resistente' a esos valores atípicos. La opción A es un error conceptual común: la media suele ser la medida más precisa y eficiente en general, pero deja de ser la mejor opción justamente cuando hay asimetría o valores extremos como en este caso. La moda (C) no aporta información útil de tendencia central para datos continuos como la glicemia, y el rango (D) es una medida de dispersión, no de tendencia central, además de ser muy sensible a valores extremos."
+    },
+    {
+      "question": "Un conjunto de datos tiene una media de 80 y un desvío estándar de 12. ¿Cuál es el coeficiente de variación (CV)?",
+      "options": [
+        "15%",
+        "0,15%",
+        "666,7%",
+        "68"
+      ],
+      "correctIndex": 0,
+      "explanation": "El coeficiente de variación se calcula como $CV = \\frac{s}{\\bar{x}} \\times 100$. Reemplazando: $CV = \\frac{12}{80} \\times 100 = 0.15 \\times 100 = 15\\%$. La opción B es el resultado de olvidar multiplicar por 100 (dejando el cociente 0,15 sin expresarlo como porcentaje). La opción C corresponde a invertir la fórmula (media dividida desvío, en vez de desvío dividido media). La opción D confunde el CV con una resta entre la media y el desvío estándar (80 − 12 = 68), operación que no tiene sentido porque el CV es una medida relativa (un cociente), no una diferencia absoluta."
+    },
+    {
+      "question": "En una clínica, el 35% de los pacientes tiene hipertensión (H), el 25% tiene diabetes (D), y el 45% tiene al menos una de las dos condiciones. ¿Cuál es la probabilidad de que un paciente tenga ambas condiciones simultáneamente?",
+      "options": [
+        "0,15",
+        "0,0875",
+        "0,60",
+        "0,45"
+      ],
+      "correctIndex": 0,
+      "explanation": "Por la regla de la adición (o regla de la suma), $P(H \\cup D) = P(H) + P(D) - P(H \\cap D)$. Despejando la intersección: $P(H \\cap D) = P(H) + P(D) - P(H \\cup D) = 0.35 + 0.25 - 0.45 = 0.15$. La opción B ($0.35 \\times 0.25 = 0.0875$) surge de multiplicar las probabilidades como si los eventos fueran independientes, algo que el enunciado no permite asumir sin verificarlo (y de hecho, como $0.15 \\neq 0.0875$, no lo son). La opción C surge de sumar las probabilidades sin restar la intersección, un error típico al tratar eventos no excluyentes como si fueran excluyentes. La opción D confunde la intersección buscada con el dato de la unión ya dado en el enunciado."
+    },
+    {
+      "question": "Con los datos del ejercicio anterior (P(H) = 0,35, P(D) = 0,25, P(H ∩ D) = 0,15), ¿son independientes los eventos 'tener hipertensión' y 'tener diabetes' en este grupo de pacientes?",
+      "options": [
+        "Sí, porque ambas enfermedades son crónicas y no están relacionadas biológicamente",
+        "No, porque $P(H \\cap D) = 0.15$ es distinto de $P(H) \\times P(D) = 0.0875$",
+        "Sí, porque $P(H \\cap D) \\neq 0$, lo que indica independencia",
+        "No se puede determinar sin conocer $P(H|D)$"
+      ],
+      "correctIndex": 1,
+      "explanation": "Dos eventos son independientes únicamente cuando se cumple $P(A \\cap B) = P(A) \\times P(B)$. Aquí $P(H) \\times P(D) = 0.35 \\times 0.25 = 0.0875$, mientras que la intersección real observada es $0.15$. Como ambos valores no coinciden, H y D NO son independientes: en este grupo, tener una condición está asociado con tener la otra. La opción A es un error típico: la independencia estadística se determina con los datos observados, no con supuestos biológicos previos. La opción C confunde independencia con compatibilidad: que $P(A \\cap B) \\neq 0$ solo indica que los eventos pueden ocurrir juntos (son compatibles), no que sean independientes. La opción D es incorrecta porque ya se cuenta con todos los datos necesarios ($P(H)$, $P(D)$ y $P(H \\cap D)$) para aplicar la definición de independencia directamente."
+    },
+    {
+      "question": "Una prueba diagnóstica es positiva en el 90% de los pacientes que realmente tienen la enfermedad, y es negativa en el 95% de quienes no la tienen. La prevalencia de la enfermedad en la población estudiada es del 10%. Si un paciente tomado al azar obtiene un resultado positivo, ¿cuál es la probabilidad de que realmente tenga la enfermedad?",
+      "options": [
+        "90%",
+        "66,7%",
+        "10%",
+        "5%"
+      ],
+      "correctIndex": 1,
+      "explanation": "Aplicando el Teorema de Bayes: $P(E|+) = \\frac{P(+|E) \\times P(E)}{P(+|E) \\times P(E) + P(+|\\text{no }E) \\times P(\\text{no }E)}$. Primero se calcula la probabilidad total de un resultado positivo: $P(+) = (0.90)(0.10) + (0.05)(0.90) = 0.09 + 0.045 = 0.135$ (el 0,05 es la probabilidad de falso positivo, $1-0.95$). Luego, $P(E|+) = 0.09/0.135 \\approx 0.667$, es decir, 66,7%. La opción A confunde la probabilidad buscada (a posteriori, luego de conocer el resultado) con la sensibilidad de la prueba ($P(+|E)=90\\%$), que es un dato de entrada, no la respuesta. La opción C confunde el resultado con la prevalencia previa (10%), ignorando que el resultado positivo de la prueba debe actualizar esa probabilidad inicial. La opción D corresponde a la tasa de falsos positivos ($P(+|\\text{no }E)=5\\%$), otro dato de entrada distinto de lo preguntado. Este ejercicio ilustra un punto clave del Teorema de Bayes: aun con una prueba bastante buena, si la enfermedad es poco prevalente, un resultado positivo no garantiza una probabilidad muy alta de enfermedad real."
+    }
+  ]
+}

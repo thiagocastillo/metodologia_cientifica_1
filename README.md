@@ -2,14 +2,14 @@
 
 Página de estudio interactiva para **Métodos Cuantitativos 1** (estadística y probabilidad aplicada a medicina, dentro de Metodología Científica 1).
 
-Todo el material original en PDF (clases, diapositivas, prácticos, artículos, tablas y hoja de fórmulas) fue convertido a Markdown y organizado por tema. El progreso de estudio se guarda localmente en el navegador (no requiere backend ni login).
+Todo el material original en PDF (clases, diapositivas, prácticos, artículos, tablas y hoja de fórmulas) fue convertido a Markdown y organizado por tema. Cada tema principal tiene además una **autoevaluación** (quiz de opción múltiple) que corrige al instante y explica la respuesta, se acierte o se falle. El progreso de estudio y los mejores puntajes de cada quiz se guardan localmente en el navegador (no requiere backend ni login).
 
 ## Estructura
 
 ```
-mc1-estudio-interactivo/
+metodologia_cientifica_1/
 ├── index.html         ← página principal
-├── app.js              ← navegación, búsqueda, progreso (localStorage), render de Markdown + LaTeX
+├── app.js              ← navegación, búsqueda, progreso y quizzes (localStorage), render de Markdown + LaTeX
 ├── style.css           ← tema visual
 └── content/
     ├── repaso/          ← variables, medidas de resumen, probabilidad básica
@@ -21,7 +21,26 @@ mc1-estudio-interactivo/
     ├── avanzado/              ← muestras pareadas, proporciones, chi², riesgo, correlación
     ├── practicos/              ← prácticos de la materia con sus respuestas
     ├── referencia/              ← hoja de fórmulas y tablas estadísticas (Z, t, Binomial, Poisson)
-    └── articulos/                ← artículos científicos usados en los prácticos
+    ├── articulos/                ← artículos científicos usados en los prácticos
+    └── quiz/                      ← preguntas de cada autoevaluación (JSON), una por tema
+```
+
+## Autoevaluaciones (quiz)
+
+Cada uno de los 7 temas principales (Repaso, Discretas, Continuas, Inferencia, Diagnóstico, Contraste, Avanzado) termina con una autoevaluación de opción múltiple: al elegir una respuesta se marca al instante como correcta o incorrecta y se muestra una explicación (en ambos casos) de por qué la opción correcta lo es. El puntaje de la vuelta actual y el mejor puntaje histórico se guardan en `localStorage`, y el quiz se puede reintentar todas las veces que se quiera. Las preguntas viven en `content/quiz/<tema>.json` con este formato:
+
+```json
+{
+  "title": "Autoevaluación: <Tema>",
+  "questions": [
+    {
+      "question": "texto de la pregunta (admite LaTeX inline con $...$)",
+      "options": ["opción A", "opción B", "opción C", "opción D"],
+      "correctIndex": 0,
+      "explanation": "por qué es correcta / por qué fallan las demás"
+    }
+  ]
+}
 ```
 
 ## Cómo se generó el contenido

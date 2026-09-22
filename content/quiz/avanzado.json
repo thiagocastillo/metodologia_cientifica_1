@@ -1,0 +1,115 @@
+{
+  "title": "Autoevaluación: Temas Avanzados",
+  "questions": [
+    {
+      "question": "Un investigador mide la presión arterial de los mismos 20 pacientes antes y después de administrar un fármaco. ¿Qué tipo de diseño es este y qué estadístico corresponde usar?",
+      "options": [
+        "Muestras independientes; t de Student con varianza conjunta",
+        "Muestras pareadas; t pareada, calculada sobre las diferencias $d_i = x_i - y_i$",
+        "Muestras independientes; prueba Chi-cuadrado de independencia",
+        "Muestras pareadas; Z para comparación de dos proporciones"
+      ],
+      "correctIndex": 1,
+      "explanation": "Como son los mismos 20 pacientes medidos en dos momentos (antes y después), cada persona actúa como su propio control: es un diseño de muestras pareadas. El estadístico correcto es $t = \\frac{\\bar{d} - 0}{S_d/\\sqrt{n}}$, calculado sobre las diferencias individuales $d_i$, con $gl = n-1$. La opción A es incorrecta porque la varianza conjunta se usa para grupos de personas distintas (muestras independientes), no para mediciones repetidas en los mismos sujetos. Chi-cuadrado y la comparación de proporciones no aplican aquí porque la variable de interés (presión arterial) es cuantitativa continua, no categórica."
+    },
+    {
+      "question": "En un estudio de dos grupos independientes se obtiene $S_1^2 = 8$ y $S_2^2 = 3$. Según el criterio visto en el curso para elegir el modelo, ¿qué corresponde hacer?",
+      "options": [
+        "Usar t de Student con varianza conjunta, porque las varianzas son iguales",
+        "Usar t de Welch, porque el cociente $S_1^2/S_2^2 = 2{,}67$ supera el umbral de 2",
+        "Usar la prueba de Mann-Whitney U, porque no se pueden calcular varianzas distintas",
+        "Usar t pareada, porque hay dos grupos de datos"
+      ],
+      "correctIndex": 1,
+      "explanation": "El criterio del curso indica que si $S_1^2/S_2^2 < 2$ se asumen varianzas iguales y se usa la varianza conjunta; si el cociente es mayor o igual a 2, las varianzas se consideran distintas y corresponde usar Welch. Aquí $8/3 \\approx 2{,}67 > 2$, por lo que se debe usar t de Welch, con $SE = \\sqrt{S_1^2/n_1 + S_2^2/n_2}$. La opción A aplica el criterio contrario. Mann-Whitney U es una alternativa no paramétrica que se usa cuando no hay normalidad o hay outliers, no simplemente por tener varianzas distintas. La t pareada no corresponde porque los grupos son independientes (personas distintas), no mediciones repetidas en los mismos individuos."
+    },
+    {
+      "question": "En una muestra de 150 pacientes, 45 presentan cierto evento. Se quiere comparar esta proporción muestral con una tasa poblacional esperada $p_0 = 0{,}25$. ¿Cuál es el estadístico de prueba correcto?",
+      "options": [
+        "$Z = \\dfrac{\\hat{p} - p_0}{\\sqrt{\\hat{p}(1-\\hat{p})/n}}$, usando la proporción muestral en el error estándar",
+        "$Z = \\dfrac{\\hat{p} - p_0}{\\sqrt{p_0(1-p_0)/n}}$, usando la proporción poblacional teórica en el error estándar",
+        "$t = \\dfrac{\\bar{d} - 0}{S_d/\\sqrt{n}}$, tratando los datos como pareados",
+        "$\\chi^2 = \\sum \\dfrac{(O-E)^2}{E}$, comparando frecuencias observadas y esperadas"
+      ],
+      "correctIndex": 1,
+      "explanation": "Para el test de una proporción única, el error estándar se calcula bajo el supuesto de que $H_0$ es cierta, es decir, usando la proporción poblacional teórica $p_0$: $SE = \\sqrt{p_0(1-p_0)/n}$, y luego $Z = \\frac{\\hat{p} - p_0}{SE}$. La opción A es un error común: usar $\\hat{p}$ en el error estándar corresponde a otros contextos (como intervalos de confianza), no al contraste de hipótesis bajo $H_0$. No es un diseño pareado (no hay mediciones repetidas en los mismos sujetos) ni corresponde Chi-cuadrado, que se usa para tablas de contingencia con dos variables categóricas, no para comparar una proporción contra un valor de referencia."
+    },
+    {
+      "question": "Se compara el éxito de un tratamiento A (30 éxitos de 80 pacientes) contra un tratamiento B (20 éxitos de 90 pacientes). Para calcular el error estándar del estadístico Z bajo $H_0$, ¿qué proporción se debe usar?",
+      "options": [
+        "El promedio simple entre $\\hat{p}_1$ y $\\hat{p}_2$: $(\\hat{p}_1+\\hat{p}_2)/2$",
+        "La proporción combinada $\\hat{p} = \\dfrac{x_1+x_2}{n_1+n_2}$, calculada con los éxitos y tamaños de ambos grupos",
+        "Únicamente $\\hat{p}_1$, la proporción del grupo con mayor tamaño muestral",
+        "Un valor de referencia $p_0$ definido arbitrariamente por el investigador"
+      ],
+      "correctIndex": 1,
+      "explanation": "Cuando se comparan dos proporciones, bajo $H_0: p_1 = p_2$ se asume que ambos grupos comparten la misma proporción poblacional, que se estima combinando los datos de ambas muestras: $\\hat{p} = \\frac{x_1+x_2}{n_1+n_2}$. Con esa proporción combinada se calcula $SE = \\sqrt{\\hat{p}(1-\\hat{p})\\left(\\frac{1}{n_1}+\\frac{1}{n_2}\\right)}$. El promedio simple (opción A) ignora los tamaños muestrales distintos y no es la fórmula correcta. Usar solo $\\hat{p}_1$ no tiene sentido porque se necesita información de ambos grupos, y no existe un $p_0$ de referencia en este diseño: la comparación es entre dos grupos observados, no contra un valor poblacional teórico."
+    },
+    {
+      "question": "En una tabla de contingencia para una prueba de independencia, ¿qué representan las frecuencias esperadas (E)?",
+      "options": [
+        "Los valores realmente registrados en cada celda de la muestra",
+        "Los valores que se esperarían en cada celda si las dos variables fueran independientes entre sí",
+        "El promedio de todas las celdas de la tabla, sin distinguir filas ni columnas",
+        "La proporción muestral de éxito de la variable dependiente"
+      ],
+      "correctIndex": 1,
+      "explanation": "Las frecuencias esperadas (E) representan los valores que se esperarían observar en cada celda si no existiera relación entre las dos variables categóricas, y se calculan como $E = \\frac{(\\text{total fila})(\\text{total columna})}{\\text{Total general}}$. La prueba Chi-cuadrado compara estas E con las frecuencias observadas (O): si O ≈ E, es compatible con independencia; si O se aleja mucho de E, hay evidencia de asociación. La opción A describe a las frecuencias observadas, no a las esperadas. El promedio simple de las celdas (opción C) no tiene en cuenta los totales de fila y columna, y la proporción de éxito (opción D) corresponde a otro tipo de análisis (comparación de proporciones), no a una tabla de contingencia con dos variables."
+    },
+    {
+      "question": "En una tabla de contingencia 2×2, una de las celdas tiene una frecuencia esperada de 3. Según las reglas del curso, ¿qué corresponde hacer?",
+      "options": [
+        "Aplicar Chi-cuadrado sin ninguna modificación, porque el tamaño total de la muestra es grande",
+        "Usar el test exacto de Fisher, porque hay una frecuencia esperada menor a 5",
+        "Duplicar los grados de libertad para compensar la celda pequeña",
+        "Descartar esa celda y calcular Chi-cuadrado solo con las tres restantes"
+      ],
+      "correctIndex": 1,
+      "explanation": "La regla del curso establece que todas las frecuencias esperadas deben ser al menos 1 y que, idealmente, al menos el 80% debe ser ≥ 5; en tablas 2×2 esto implica que las 4 celdas deberían cumplirlo. Si alguna celda tiene una frecuencia esperada menor a 5 (como en este caso, E = 3), se debe considerar el test exacto de Fisher en lugar de Chi-cuadrado, ya que este último deja de ser una aproximación confiable. Aplicar Chi-cuadrado sin ajustes (opción A) ignora esta limitación aunque la muestra total sea grande, y no existe ningún procedimiento válido para 'compensar' cambiando los grados de libertad o descartando celdas de la tabla."
+    },
+    {
+      "question": "¿Cuál es la principal razón por la que en un estudio de casos y controles se utiliza el Odds Ratio (OR) en lugar del Riesgo Relativo (RR)?",
+      "options": [
+        "Porque el OR es matemáticamente siempre más preciso que el RR, sin importar el diseño",
+        "Porque en un estudio de casos y controles no se conoce la incidencia del evento en la población, por lo que no puede calcularse directamente el riesgo relativo",
+        "Porque el OR no necesita acompañarse de un intervalo de confianza",
+        "Porque el RR solo puede calcularse quando la variable de exposición es cuantitativa continua"
+      ],
+      "correctIndex": 1,
+      "explanation": "Los estudios de casos y controles parten de la selección de personas según su condición de enfermas o sanas (no de una cohorte seguida en el tiempo), por lo que no es posible estimar la incidencia real del evento y, en consecuencia, no se puede calcular directamente el RR. En este diseño se usa el OR ($\\widehat{OR}=\\frac{a\\times d}{b\\times c}$) como estimador de la asociación. El RR se reserva para estudios de cohorte y ensayos clínicos, de carácter prospectivo, donde sí se puede medir la incidencia en expuestos y no expuestos. El OR sí requiere intervalo de confianza (igual que el RR), y ambas medidas de asociación se calculan sobre variables categóricas (expuesto/no expuesto, evento sí/no), no cuantitativas continuas."
+    },
+    {
+      "question": "En un estudio de cohorte se obtiene $RR = 0{,}4$ con un intervalo de confianza del 95% de (0,25; 0,63). ¿Cuál es la interpretación correcta?",
+      "options": [
+        "La exposición es un factor de riesgo, porque el RR es distinto de 1",
+        "No hay asociación estadísticamente significativa, porque el intervalo contiene valores bajos",
+        "La exposición es un factor protector, porque el RR es menor a 1 y el intervalo de confianza no incluye el valor 1",
+        "No es posible interpretar el resultado sin calcular además el Odds Ratio"
+      ],
+      "correctIndex": 2,
+      "explanation": "Un RR menor a 1 indica que el riesgo del evento es menor en el grupo expuesto que en el no expuesto, es decir, la exposición actúa como factor protector. Como el intervalo de confianza (0,25; 0,63) está completamente por debajo de 1 (no incluye el valor de no asociación), la asociación es estadísticamente significativa. La opción A confunde la dirección de la asociación: RR < 1 es protector, no factor de riesgo (eso correspondería a RR > 1). La opción B es incorrecta porque un intervalo que no incluye el 1 sí indica significación estadística, independientemente de que sus valores sean 'bajos'. No es necesario calcular el OR para interpretar un RR: son medidas distintas, apropiadas para diseños distintos."
+    },
+    {
+      "question": "Se calcula el coeficiente de correlación de Pearson entre horas de sueño y rendimiento en un examen, obteniendo $r = 0{,}05$. ¿Qué significa este resultado?",
+      "options": [
+        "Existe una relación lineal fuerte y positiva entre ambas variables",
+        "Existe una relación lineal fuerte pero de sentido inverso entre las variables",
+        "Prácticamente no hay relación lineal entre las variables, ya que $r$ está muy cerca de 0",
+        "Las horas de sueño causan directamente el nivel de rendimiento en el examen"
+      ],
+      "correctIndex": 2,
+      "explanation": "El coeficiente de Pearson $r$ toma valores entre −1 y +1, donde valores cercanos a 0 indican ausencia de correlación lineal entre las variables. Con $r = 0{,}05$, prácticamente no hay evidencia de una relación lineal entre horas de sueño y rendimiento. Las opciones A y B describen relaciones fuertes (cercanas a +1 o −1), que no corresponden a este valor. La opción D es incorrecta por dos motivos: primero, un $r$ cercano a 0 ni siquiera sugiere asociación lineal relevante, y segundo, la existencia de correlación —incluso si fuera alta— nunca implica por sí sola una relación de causa y efecto."
+    },
+    {
+      "question": "Un estudio halla una correlación de Pearson significativa ($p < 0{,}05$) entre el consumo de café y la incidencia de cierta enfermedad, con $r = 0{,}42$. ¿Cuál es la conclusión correcta según los principios de la correlación?",
+      "options": [
+        "El consumo de café causa la enfermedad, ya que la correlación resultó estadísticamente significativa",
+        "Existe una asociación lineal de intensidad moderada entre las variables, pero esto no implica que una sea causa de la otra",
+        "Como $r$ es positivo, queda confirmada una relación de causa-efecto directa entre ambas variables",
+        "El resultado no tiene ninguna utilidad práctica, ya que $r$ no alcanza el valor de 1"
+      ],
+      "correctIndex": 1,
+      "explanation": "Un $r = 0{,}42$ estadísticamente significativo indica una asociación lineal de intensidad moderada y en sentido positivo entre las variables (a mayor consumo de café, mayor incidencia observada), pero la correlación —por más significativa que sea— nunca demuestra causalidad. Dos variables pueden estar correlacionadas por la influencia de variables confundentes, relaciones indirectas o coincidencia. Las opciones A y C cometen el error clásico de confundir correlación con causalidad. La opción D es incorrecta porque no es necesario que $r$ sea igual a 1 para que el resultado sea informativo: una correlación moderada y significativa ya aporta evidencia útil sobre la asociación lineal entre las variables."
+    }
+  ]
+}

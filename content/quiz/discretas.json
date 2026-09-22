@@ -1,0 +1,93 @@
+{
+  "title": "Autoevaluación: Distribuciones Discretas",
+  "questions": [
+    {
+      "question": "En términos de los parámetros $n$ (número de ensayos) y $p$ (probabilidad de éxito), ¿en qué situación es apropiado utilizar la distribución de Poisson en lugar de la Binomial?",
+      "options": [
+        "Cuando $n$ es grande y $p$ es muy pequeño (evento raro), y Poisson debe usarse con $n$ pequeño y $p$ grande.",
+        "Cuando $n$ es reducido (pocos ensayos), la situación se modela con Binomial; cuando $n$ es muy grande y $p$ es muy pequeño, conviene aproximar con Poisson usando $\\lambda = n \\cdot p$.",
+        "Ambas distribuciones son intercambiables siempre que $n \\cdot p > 5$, sin importar cuánto valga $p$.",
+        "Se usa Poisson únicamente cuando la variable es continua, y Binomial cuando es discreta."
+      ],
+      "correctIndex": 1,
+      "explanation": "Correcta: B. El material del curso establece que la Binomial se usa con $n$ reducido (ensayos de Bernoulli con reposición e independientes), mientras que Poisson es una buena aproximación cuando $n$ es muy grande (tiende a infinito) y $p$ es muy pequeño (evento raro), tomando $\\lambda = n \\cdot p$ como parámetro. La opción A invierte el criterio. La opción C confunde esto con la condición de la aproximación normal a la binomial ($np>5$ y $n(1-p)>5$), que es un caso distinto. La opción D es incorrecta porque ambas distribuciones, Binomial y Poisson, son discretas — la diferencia no pasa por continuidad sino por los valores de $n$ y $p$."
+    },
+    {
+      "question": "¿Cuál de las siguientes condiciones NO es necesaria para que una situación pueda modelarse con la distribución Binomial (es decir, que los ensayos sean de tipo Bernoulli)?",
+      "options": [
+        "Cada ensayo tiene exactamente dos resultados posibles y excluyentes (éxito o fracaso).",
+        "La probabilidad de éxito $p$ se mantiene constante en todos los ensayos.",
+        "Los $n$ ensayos son independientes entre sí.",
+        "El número de ensayos $n$ debe tender a infinito y $p$ debe ser muy pequeño."
+      ],
+      "correctIndex": 3,
+      "explanation": "Correcta: D. Un ensayo de Bernoulli requiere solo dos resultados excluyentes con probabilidades $p$ y $q=1-p$ que se mantienen constantes, y los $n$ ensayos deben ser independientes entre sí (con reposición). Estas son justamente las condiciones descritas en A, B y C. La condición 'D' ($n\\to\\infty$ y $p\\to 0$) no es un requisito de la Binomial: al contrario, es la condición bajo la cual conviene abandonar la Binomial y aproximar con Poisson en su lugar."
+    },
+    {
+      "question": "Los corticoides producen eventos adversos (EA) en el 70% de los pacientes que los reciben ($p=0{,}7$). Si se tratan 10 pacientes de forma independiente, ¿cuáles son la media ($\\mu$) y la varianza ($\\sigma^2$) esperadas del número de pacientes con EA?",
+      "options": [
+        "$\\mu = 7$ y $\\sigma^2 = 2{,}1$",
+        "$\\mu = 0{,}7$ y $\\sigma^2 = 0{,}21$",
+        "$\\mu = 7$ y $\\sigma^2 = 7$",
+        "$\\mu = 3$ y $\\sigma^2 = 2{,}1$"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correcta: A. En la Binomial, $\\mu = n \\cdot p = 10 \\times 0{,}7 = 7$ y $\\sigma^2 = n \\cdot p \\cdot q = 10 \\times 0{,}7 \\times 0{,}3 = 2{,}1$. La opción B confunde la media esperada con el valor de $p$ (olvida multiplicar por $n$). La opción C aplica la propiedad de Poisson (donde media y varianza coinciden), que no es válida para la Binomial. La opción D calcula la media usando $q$ en lugar de $p$ ($n \\cdot q = 3$), cuando lo que se pide es el número esperado de pacientes CON evento adverso (éxito = tener EA, con $p=0{,}7$)."
+    },
+    {
+      "question": "¿Cuál de las siguientes afirmaciones sobre los parámetros de la distribución de Poisson es correcta?",
+      "options": [
+        "Tiene dos parámetros, $n$ y $p$, igual que la Binomial.",
+        "Tiene un único parámetro $\\lambda$, y además su media y su varianza son iguales entre sí: $E(X) = V(X) = \\lambda$.",
+        "Su varianza siempre es menor que su media, a diferencia de la Binomial.",
+        "El parámetro $\\lambda$ representa la probabilidad de éxito en cada ensayo."
+      ],
+      "correctIndex": 1,
+      "explanation": "Correcta: B. A diferencia de la Binomial (que depende de $n$ y $p$), la Poisson queda definida por un único parámetro $\\lambda$ (el número promedio de eventos por intervalo), y una propiedad distintiva es que $E(X) = V(X) = \\lambda$. La opción A confunde los parámetros de ambas distribuciones. La opción C es falsa: media y varianza son exactamente iguales, no una menor que la otra. La opción D es incorrecta porque Poisson no trabaja con 'ensayos' ni con una probabilidad de éxito por ensayo; $\\lambda$ es una tasa promedio de ocurrencias, no una probabilidad entre 0 y 1."
+    },
+    {
+      "question": "Un antibiótico logra curar una infección urinaria en el 90% de los casos ($p=0{,}9$). Si se trata a 4 pacientes de forma independiente, ¿cuál es la probabilidad de que se curen exactamente 3 de ellos?",
+      "options": [
+        "$0{,}2916$",
+        "$0{,}6561$",
+        "$0{,}0037$",
+        "$0{,}9$"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correcta: A. Usando $P(X=x) = \\binom{n}{x} p^x (1-p)^{n-x}$ con $n=4$, $x=3$, $p=0{,}9$: $P(X=3) = \\binom{4}{3}(0{,}9)^3(0{,}1)^1 = 4 \\times 0{,}729 \\times 0{,}1 = 0{,}2916$. La opción B ($0{,}9^4=0{,}6561$) corresponde a que se curen los 4 pacientes, no exactamente 3. La opción C invierte los roles de éxito y fracaso (usa $p=0{,}1$ como si fuera la probabilidad de curarse). La opción D es simplemente el valor de $p$, sin aplicar la fórmula binomial."
+    },
+    {
+      "question": "Se dispone de una tabla de distribución binomial acumulada para $n=10$ y $p=0{,}3$, donde $P(X \\leq 4) = 0{,}8497$. ¿Cómo se calcula $P(X \\geq 5)$ a partir de este dato?",
+      "options": [
+        "$P(X \\geq 5) = 1 - P(X \\leq 4) = 1 - 0{,}8497 = 0{,}1503$",
+        "$P(X \\geq 5) = P(X \\leq 4) = 0{,}8497$, ya que la tabla da directamente ese valor.",
+        "$P(X \\geq 5) = 1 - P(X \\leq 5)$, pero como no tenemos ese valor no se puede calcular con los datos dados.",
+        "$P(X \\geq 5) = P(X = 5)$, que debe calcularse aparte con la fórmula puntual."
+      ],
+      "correctIndex": 0,
+      "explanation": "Correcta: A. La regla para leer tablas acumuladas indica que $P(X \\geq a) = 1 - P(X \\leq a-1)$. Como se pide $P(X \\geq 5)$, corresponde restar $P(X \\leq 4)$ (es decir, $a-1=4$): $1 - 0{,}8497 = 0{,}1503$. La opción B confunde 'como mínimo 5' con 'como máximo 4', que son sucesos complementarios, no iguales. La opción C usa el límite equivocado (debería ser $X \\leq 4$, no $X \\leq 5$) y además el dato sí permite resolver el problema. La opción D es incorrecta porque $X \\geq 5$ incluye los casos $x=5,6,7,\\ldots,10$, no solo $x=5$."
+    },
+    {
+      "question": "Un servicio de urgencias recibe, en promedio, 3 llamadas por hora ($\\lambda = 3$), siguiendo una distribución de Poisson. ¿Cuál es la probabilidad de recibir exactamente 2 llamadas en una hora determinada?",
+      "options": [
+        "$0{,}2240$",
+        "$0{,}1494$",
+        "$0{,}0498$",
+        "$0{,}1992$"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correcta: A. Con $P(X=x) = \\dfrac{e^{-\\lambda}\\lambda^x}{x!}$, para $\\lambda=3$ y $x=2$: $P(X=2) = \\dfrac{e^{-3}\\times 3^2}{2!} = \\dfrac{0{,}0498 \\times 9}{2} \\approx 0{,}2240$. La opción B es $P(X=1) = e^{-3}\\times 3 \\approx 0{,}1494$, un valor de $x$ distinto. La opción C es $P(X=0)=e^{-3}\\approx 0{,}0498$. La opción D es la suma $P(X=0)+P(X=1)\\approx 0{,}1992$, que corresponde a la probabilidad acumulada $P(X\\leq 1)$, no a la probabilidad puntual $P(X=2)$ que se pidió."
+    },
+    {
+      "question": "Una enfermedad congénita poco frecuente ocurre en 1 de cada 10.000 nacimientos ($p=0{,}0001$). En una maternidad se registran 20.000 nacimientos en un año. ¿Qué modelo probabilístico conviene usar para estimar el número de casos esperados en el año, y cuál es su parámetro principal?",
+      "options": [
+        "Poisson, con $\\lambda = n \\times p = 20000 \\times 0{,}0001 = 2$ casos esperados.",
+        "Binomial, con parámetros $n=20000$ y $p=0{,}0001$, calculando cada probabilidad con el coeficiente combinatorio $\\binom{n}{x}$.",
+        "Normal, con $\\mu = 20000$ y $\\sigma = 0{,}0001$, aplicando la aproximación normal a la binomial.",
+        "Poisson, con $\\lambda = 20000$ casos esperados, ya que $\\lambda$ siempre equivale al tamaño de la muestra $n$."
+      ],
+      "correctIndex": 0,
+      "explanation": "Correcta: A. Como $n$ es muy grande (20.000) y $p$ es muy pequeño (evento raro, $0{,}0001$), el curso indica aproximar la Binomial con una Poisson de parámetro $\\lambda = n \\cdot p = 2$ casos esperados por año — exactamente el mismo razonamiento que el ejemplo de la enfermedad rara en una ciudad de 500.000 habitantes visto en el material. La opción B, aunque técnicamente es el modelo exacto subyacente, es impracticable de calcular con $n$ tan grande y es precisamente el escenario en el que el curso indica usar la aproximación de Poisson en su lugar. La opción C aplica mal la aproximación normal a la binomial (que usa $\\mu=np$ y $\\sigma=\\sqrt{npq}$, no $n$ y $p$ directamente, y además requiere $np>5$, condición que aquí no se cumple). La opción D confunde $\\lambda$ con el tamaño muestral $n$: $\\lambda$ es el número esperado de casos ($n\\cdot p$), no la cantidad de nacimientos."
+    }
+  ]
+}

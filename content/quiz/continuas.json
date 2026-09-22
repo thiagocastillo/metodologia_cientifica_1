@@ -1,0 +1,93 @@
+{
+  "title": "Autoevaluación: Distribuciones Continuas",
+  "questions": [
+    {
+      "question": "La distribución normal está completamente definida por dos parámetros. ¿Cuáles son y qué representa cada uno?",
+      "options": [
+        "$\\mu$ (media), que indica el centro de la distribución, y $\\sigma$ (desvío estándar), que mide la dispersión de los valores alrededor de la media",
+        "$\\mu$ (mediana) y $\\sigma^2$ (varianza), que juntos determinan el centro de la curva",
+        "La moda y el rango, que determinan la forma de la campana",
+        "El percentil 50 y el coeficiente de variación"
+      ],
+      "correctIndex": 0,
+      "explanation": "La normal queda definida por $\\mu$ (centro de la curva, y además coincide con la mediana y la moda: $\\mu = Mo = Mn = P_{50}$) y $\\sigma$ (dispersión: si $\\sigma$ es chico la campana es angosta, si es grande es ancha). La opción B confunde los roles: no es la varianza la que fija el centro, sino $\\mu$. La moda y el rango (opción C) no son los parámetros que definen la curva, aunque la moda coincida con $\\mu$ en este caso particular. El percentil 50 (opción D) es otro nombre para la mediana, que sí coincide con $\\mu$, pero el coeficiente de variación no forma parte de la definición de la normal."
+    },
+    {
+      "question": "¿Cuál de las siguientes afirmaciones sobre la curva normal es correcta?",
+      "options": [
+        "Es simétrica respecto a $\\sigma$ y el área bajo la curva depende de las unidades de la variable",
+        "Es asimétrica hacia la derecha, con media > mediana > moda",
+        "Es simétrica respecto a $\\mu$ (media = mediana = moda) y el área total bajo la curva es igual a 1",
+        "El área bajo la curva puede ser mayor a 1 si $\\sigma$ es grande"
+      ],
+      "correctIndex": 2,
+      "explanation": "La curva normal es simétrica respecto a la media $\\mu$ (no respecto a $\\sigma$, que es un parámetro de dispersión, no un eje de simetría), y a cada lado de $\\mu$ queda exactamente el 50% del área. Además el área total bajo cualquier curva de densidad vale siempre 1, sin importar el valor de $\\sigma$: lo que cambia con $\\sigma$ es qué tan angosta o ancha es la campana, no el área total. Por eso no es asimétrica (opción B) ni puede superar el área de 1 (opción D)."
+    },
+    {
+      "question": "La presión arterial diastólica de sujetos jóvenes se distribuye normalmente con $\\mu = 68$ mmHg y $\\sigma = 7$ mmHg. ¿Cuál es el valor de $Z$ para un sujeto con presión de 60 mmHg?",
+      "options": [
+        "$Z = 1{,}14$",
+        "$Z = -0{,}88$",
+        "$Z = -8$",
+        "$Z = -1{,}14$"
+      ],
+      "correctIndex": 3,
+      "explanation": "$Z = \\frac{x-\\mu}{\\sigma} = \\frac{60-68}{7} = \\frac{-8}{7} \\approx -1{,}14$. El signo negativo es importante: como 60 mmHg está por debajo de la media (68), el sujeto se ubica a la izquierda del centro, por lo que $Z$ debe ser negativo (opción A tiene el signo invertido). La opción B corresponde a invertir la fórmula ($\\sigma/(x-\\mu)$ en vez de $(x-\\mu)/\\sigma$). La opción C es el error de olvidarse de dividir por $\\sigma$ y dejar solo la diferencia $x-\\mu = -8$."
+    },
+    {
+      "question": "Usando la tabla Z se sabe que $P(Z \\le 1{,}5) = 0{,}9332$. ¿Cuánto vale $P(Z > 1{,}5)$?",
+      "options": [
+        "$0{,}9332$",
+        "$0{,}0668$",
+        "$1{,}9332$",
+        "$-0{,}9332$"
+      ],
+      "correctIndex": 1,
+      "explanation": "La tabla Z siempre da el área acumulada desde $-\\infty$ hasta $z$, es decir $P(Z \\le z)$. Como el área total bajo la curva es 1, para obtener la cola derecha hay que restar: $P(Z > 1{,}5) = 1 - P(Z \\le 1{,}5) = 1 - 0{,}9332 = 0{,}0668$. La opción A es el error típico de usar directamente el valor de tabla sin restar, olvidando que la tabla da $P(Z \\le z)$ y no $P(Z > z)$. Las opciones C y D no son probabilidades válidas (una probabilidad nunca puede ser mayor a 1 ni negativa)."
+    },
+    {
+      "question": "Según la regla empírica, ¿qué porcentaje aproximado de las observaciones de una distribución normal se encuentra entre $\\mu - 2\\sigma$ y $\\mu + 2\\sigma$?",
+      "options": [
+        "68%",
+        "99,7%",
+        "95%",
+        "50%"
+      ],
+      "correctIndex": 2,
+      "explanation": "La regla empírica 68-95-99,7 establece que aproximadamente el 68% de los datos cae dentro de $\\mu \\pm 1\\sigma$, el 95% dentro de $\\mu \\pm 2\\sigma$ y el 99,7% dentro de $\\mu \\pm 3\\sigma$. La opción A (68%) corresponde a $\\pm 1\\sigma$, no a $\\pm 2\\sigma$. La opción B (99,7%) corresponde a $\\pm 3\\sigma$. La opción D (50%) no corresponde a ninguno de los tres rangos de la regla empírica."
+    },
+    {
+      "question": "Los niveles de colesterol total sérico se distribuyen normalmente con $\\mu = 185$ mg/dl y $\\sigma = 10$ mg/dl. Sabiendo que $Z_{0{,}90} = 1{,}28$, ¿cuál es el valor del percentil 90 ($P_{90}$)?",
+      "options": [
+        "$172{,}2$ mg/dl",
+        "$185$ mg/dl",
+        "$12{,}8$ mg/dl",
+        "$197{,}8$ mg/dl"
+      ],
+      "correctIndex": 3,
+      "explanation": "Para hallar un percentil en una variable normal se usa $X_p = \\mu + z_p \\times \\sigma$. Con $z_{0{,}90} = 1{,}28$: $X_{90} = 185 + (1{,}28)(10) = 185 + 12{,}8 = 197{,}8$ mg/dl. La opción A ($172{,}2$) es el resultado de usar $z_{0{,}10} = -1{,}28$ en vez de $z_{0{,}90}$, es decir, el percentil 10 (el simétrico) en lugar del 90. La opción B ignora por completo el término $z_p \\times \\sigma$ y deja solo la media. La opción C es el error de calcular únicamente $z_p \\times \\sigma$ sin sumarle $\\mu$."
+    },
+    {
+      "question": "Según el Teorema del Límite Central, si se toman muestras aleatorias de tamaño $n$ de una población con media $\\mu$ y desvío $\\sigma$, la distribución de las medias muestrales $\\bar{x}$ tiene:",
+      "options": [
+        "Media $\\mu_{\\bar{x}} = \\mu/n$ y desvío $\\sigma_{\\bar{x}} = \\sigma$",
+        "Media $\\mu_{\\bar{x}} = \\mu$ y desvío $\\sigma_{\\bar{x}} = \\sigma/\\sqrt{n}$",
+        "Media $\\mu_{\\bar{x}} = \\mu$ y desvío $\\sigma_{\\bar{x}} = \\sigma$ (igual que la población, sin importar $n$)",
+        "Media $\\mu_{\\bar{x}} = \\mu \\times n$ y desvío $\\sigma_{\\bar{x}} = \\sigma \\times \\sqrt{n}$"
+      ],
+      "correctIndex": 1,
+      "explanation": "El TLC establece que la distribución de las medias muestrales es aproximadamente normal, centrada en la misma media poblacional ($\\mu_{\\bar{x}} = \\mu$) pero con menor dispersión, dada por el error estándar $\\sigma_{\\bar{x}} = \\sigma/\\sqrt{n}$: a mayor $n$, menor error estándar y las medias muestrales se concentran más cerca de $\\mu$. Esto es justamente lo que hace útil al TLC: permite trabajar con la media muestral (más precisa que un dato individual) usando el mismo esquema de tipificación y tabla Z, y es la base de los intervalos de confianza y las pruebas de hipótesis. La opción C es el error conceptual más común: creer que el desvío de las medias muestrales es igual al de la población, ignorando que las medias varían menos que los valores individuales. Las opciones A y D alteran la fórmula multiplicando en vez de dividir, o aplicando $n$ a la media cuando no corresponde."
+    },
+    {
+      "question": "El peso de recién nacidos se distribuye normalmente con $\\mu = 3{,}3$ kg y $\\sigma = 0{,}6$ kg. Si se toma una muestra al azar de $n = 9$ recién nacidos, ¿cuál es el valor de $Z$ para calcular $P(\\bar{X} < 3{,}1)$?",
+      "options": [
+        "$Z = -0{,}33$ (usando $\\sigma = 0{,}6$ directamente)",
+        "$Z = -3{,}00$",
+        "$Z = -1{,}00$ (usando el error estándar $\\sigma/\\sqrt{n} = 0{,}6/3 = 0{,}2$)",
+        "$Z = -1{,}8$"
+      ],
+      "correctIndex": 2,
+      "explanation": "Como se trata de la media muestral (no de un dato individual), corresponde usar la fórmula del TLC: $Z = \\frac{\\bar{X}-\\mu}{\\sigma/\\sqrt{n}} = \\frac{3{,}1-3{,}3}{0{,}6/\\sqrt{9}} = \\frac{-0{,}2}{0{,}2} = -1{,}00$. La opción A es el error más frecuente: usar $\\sigma$ tal cual, como si fuera un ejercicio de distribución normal para un valor individual, en vez de dividir por $\\sqrt{n}$ para obtener el error estándar (ese $-0{,}33$ sería la respuesta correcta solo si preguntaran por un recién nacido individual, no por la media de 9). La opción B multiplica por $\\sqrt{n}$ en vez de dividir. La opción D usa $\\sigma \\times \\sqrt{n}$ en el denominador en vez de $\\sigma/\\sqrt{n}$."
+    }
+  ]
+}

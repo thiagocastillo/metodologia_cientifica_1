@@ -1,0 +1,93 @@
+{
+  "title": "Autoevaluación: Procedimientos Diagnósticos",
+  "questions": [
+    {
+      "question": "En el marco de la validez interna de un test diagnóstico frente al gold standard, la sensibilidad de un test se define como:",
+      "options": [
+        "$P(\\text{test}- \\mid \\text{sano})$, la probabilidad de que el test dé negativo en un individuo sano",
+        "$P(\\text{sano} \\mid \\text{test}-)$, la probabilidad de que un individuo con test negativo esté realmente sano",
+        "$P(\\text{test}+ \\mid \\text{enfermo})$, la probabilidad de que el test dé positivo en un individuo verdaderamente enfermo",
+        "$P(\\text{enfermo} \\mid \\text{test}+)$, la probabilidad de que un individuo con test positivo esté realmente enfermo"
+      ],
+      "correctIndex": 2,
+      "explanation": "La sensibilidad se define como $s = P(\\text{test}+ \\mid \\text{enfermo}) = \\frac{VP}{VP+FN}$ (opción C): parte de la condición real (enfermo) y pregunta qué tan probable es que el test lo detecte. La opción A corresponde a la definición de especificidad, y la opción B a la definición de VPN. La opción D describe en realidad el VPP — invierte cuál es la condición y cuál el resultado, y es un error muy frecuente confundir ambos conceptos: la sensibilidad es una propiedad intrínseca del test (no depende de la prevalencia), mientras que el VPP sí depende de ella."
+    },
+    {
+      "question": "Se aplica un test diagnóstico a 200 pacientes y se compara con el gold standard, obteniéndose la siguiente tabla 2x2:\n\n| | Enfermo | Sano | Total |\n|---|---|---|---|\n| Test + | 45 (VP) | 30 (FP) | 75 |\n| Test − | 5 (FN) | 120 (VN) | 125 |\n| Total | 50 | 150 | 200 |\n\n¿Cuáles son la sensibilidad y la especificidad del test?",
+      "options": [
+        "Sensibilidad = 60%, Especificidad = 96%",
+        "Sensibilidad = 90%, Especificidad = 80%",
+        "Sensibilidad = 96%, Especificidad = 60%",
+        "Sensibilidad = 80%, Especificidad = 90%"
+      ],
+      "correctIndex": 1,
+      "explanation": "Sensibilidad $=\\frac{VP}{VP+FN}=\\frac{45}{45+5}=\\frac{45}{50}=0{,}90$ (90%); Especificidad $=\\frac{VN}{VN+FP}=\\frac{120}{120+30}=\\frac{120}{150}=0{,}80$ (80%): opción B. La opción D simplemente invierte los dos valores. Las opciones A y C corresponden en realidad al VPP (60% = $45/75$) y al VPN (96% = $120/125$): son indicadores distintos, que se calculan usando los totales de resultados del test (filas), no los totales de la condición real (columnas) como hacen sensibilidad y especificidad."
+    },
+    {
+      "question": "Usando los mismos datos de la tabla anterior (VP=45, FP=30, FN=5, VN=120, sobre 200 pacientes), ¿cuál es el valor predictivo positivo (VPP) del test?",
+      "options": [
+        "90%",
+        "96%",
+        "80%",
+        "60%"
+      ],
+      "correctIndex": 3,
+      "explanation": "$VPP=\\frac{VP}{VP+FP}=\\frac{45}{45+30}=\\frac{45}{75}=0{,}60$ (60%): opción D. A diferencia de la sensibilidad (90%, opción A) y la especificidad (80%, opción C), el VPP parte del resultado del test (positivo) y pregunta por la probabilidad de enfermedad real: usa como denominador el total de test positivos (fila), no el total de enfermos (columna). El 96% (opción B) corresponde al VPN, que se calcula con los resultados negativos ($120/125$)."
+    },
+    {
+      "question": "La sensibilidad y la especificidad de un test no cambian según la prevalencia de la enfermedad en la población, pero el VPP y el VPN sí lo hacen. ¿Por qué ocurre esto?",
+      "options": [
+        "Porque sensibilidad y especificidad se calculan por separado entre los enfermos y entre los sanos (son propiedades intrínsecas del test), mientras que VPP y VPN se calculan sobre los totales de resultados positivos y negativos del test, que sí varían según cuántos enfermos hay en la población",
+        "Porque el VPP y el VPN sólo pueden calcularse en estudios de cohorte, mientras que la sensibilidad y la especificidad requieren estudios de casos y controles",
+        "Porque la prevalencia modifica directamente los valores de sensibilidad y especificidad del test, y estos cambios se trasladan luego al VPP y al VPN",
+        "Porque el VPP y el VPN se calculan con una fórmula que no tiene ninguna relación matemática con la sensibilidad y la especificidad"
+      ],
+      "correctIndex": 0,
+      "explanation": "Sensibilidad $=VP/(VP+FN)$ se calcula únicamente entre los enfermos, y especificidad $=VN/(VN+FP)$ únicamente entre los sanos: son proporciones \"verticales\" de la tabla 2x2 que no dependen de cuántos enfermos haya en la población (opción A, correcta). En cambio, VPP $=VP/(VP+FP)$ y VPN $=VN/(VN+FN)$ son proporciones \"horizontales\": dependen de cuántos de los que dieron positivo (o negativo) están realmente enfermos, y eso cambia con la prevalencia, como muestra explícitamente el teorema de Bayes: $VPP=\\frac{s\\times prevalencia}{s\\times prevalencia+\\alpha\\times(1-prevalencia)}$. La opción C es un error común porque invierte la causalidad: la prevalencia no altera $s$ ni $e$, sino el VPP y el VPN. Las opciones B y D son afirmaciones falsas sin base en el material del curso."
+    },
+    {
+      "question": "Un mismo test para tromboembolismo pulmonar tiene sensibilidad $s=1$ y especificidad $e=0{,}02$ (por lo tanto $\\alpha=1-e=0{,}98$). Se aplica en dos pacientes distintos: uno con alta sospecha clínica (probabilidad pre-test = prevalencia = 70%) y otro con sospecha baja (prevalencia = 5%). ¿Qué ocurre con el VPP del test en cada caso?",
+      "options": [
+        "No se puede calcular el VPP en estos casos sin conocer los valores absolutos de VP y FP de cada paciente individual",
+        "El VPP es el mismo en ambos pacientes, porque la sensibilidad y la especificidad del test no cambiaron",
+        "El VPP es mucho mayor en el paciente de alta prevalencia pre-test (≈70%) que en el de baja prevalencia (≈5%), aunque la sensibilidad y la especificidad del test no cambiaron",
+        "El VPP es mayor en el paciente de baja prevalencia, porque al haber menos enfermos hay menos posibilidad de falsos positivos"
+      ],
+      "correctIndex": 2,
+      "explanation": "Aplicando el teorema de Bayes $VPP=\\frac{s\\times prevalencia}{s\\times prevalencia+\\alpha\\times(1-prevalencia)}$: con prevalencia 70%, $VPP=\\frac{1\\times0{,}7}{1\\times0{,}7+0{,}98\\times0{,}3}\\approx0{,}70$ (70%); con prevalencia 5%, $VPP=\\frac{1\\times0{,}05}{1\\times0{,}05+0{,}98\\times0{,}95}\\approx0{,}05$ (5%): opción C. El mismo test, con idéntica sensibilidad y especificidad, tiene una utilidad clínica muy distinta según el contexto: en el paciente de alta sospecha, un resultado positivo es mucho más confiable. La opción B ignora la dependencia del VPP con la prevalencia; la opción D invierte la relación real (a menor prevalencia, menor VPP, no mayor); la opción A es incorrecta porque el VPP puede obtenerse directamente de $s$, $e$ y la prevalencia, sin necesitar valores absolutos de una muestra."
+    },
+    {
+      "question": "Las razones de verosimilitud (LR) combinan sensibilidad y especificidad en un único índice. ¿Cuál de las siguientes afirmaciones sobre las LR es correcta?",
+      "options": [
+        "$LR-=\\frac{\\beta}{e}$ es igual a $1-VPN$, por lo que ambos indicadores miden exactamente lo mismo",
+        "$LR+=\\frac{s}{\\alpha}=\\frac{s}{1-e}$ indica cuántas veces es más probable obtener un resultado positivo en un enfermo que en un sano; un LR+ alto ayuda a confirmar la enfermedad",
+        "Un test ideal tiene $LR+$ cercano a 1 y $LR-$ cercano a 1, ya que eso indica que el resultado del test no aporta información adicional que pudiera generar dudas",
+        "$LR+=\\frac{s}{\\alpha}$ indica directamente la probabilidad de que el paciente esté enfermo dado un resultado positivo, por lo que es equivalente al VPP"
+      ],
+      "correctIndex": 1,
+      "explanation": "$LR+=\\dfrac{P(\\text{test}+\\mid enfermo)}{P(\\text{test}+\\mid sano)}=\\dfrac{s}{\\alpha}$ compara qué tan frecuente es un resultado positivo entre enfermos frente a sanos: cuanto mayor, más útil el test para confirmar enfermedad (según la tabla de referencia del curso, $LR+\\geq10$ indica capacidad \"suficiente\"): opción B. La opción D confunde el LR+ con el VPP: el LR+, al igual que $s$ y $e$, es un cociente de probabilidades condicionado a la condición real y no depende de la prevalencia, mientras que el VPP sí depende de ella. La opción C describe justo lo contrario de un buen test: un LR+ y un LR- cercanos a 1 significan que el resultado no modifica la probabilidad de enfermedad (test inútil); un buen test tiene LR+ alto y LR- cercano a 0. La opción A es una igualdad falsa: el LR- y el VPN son indicadores distintos, calculados con fórmulas diferentes."
+    },
+    {
+      "question": "Un hombre de 39 años consulta por dolor precordial; su probabilidad a priori de coronariopatía es 12%. Se le solicita una ergometría, cuya sensibilidad es $s=0{,}52$ y especificidad $e=0{,}92$. ¿Cuánto vale el LR+ de esta prueba y qué capacidad diagnóstica tiene, según la tabla de referencia del curso (LR+ ≥10: suficiente; 5-10: moderada; 2-5: escasa; 1-2: insignificante)?",
+      "options": [
+        "$LR+=1{,}15$ → capacidad insignificante",
+        "No se puede calcular el LR+ sin conocer la prevalencia de coronariopatía en este paciente",
+        "$LR+=0{,}57$ → capacidad insignificante",
+        "$LR+=6{,}5$ → capacidad moderada"
+      ],
+      "correctIndex": 3,
+      "explanation": "$\\alpha=1-e=1-0{,}92=0{,}08$. $LR+=\\dfrac{s}{\\alpha}=\\dfrac{0{,}52}{0{,}08}=6{,}5$, que según la tabla de referencia cae en el rango $5\\leq LR+<10$: capacidad moderada para confirmar la enfermedad (opción D). La opción C es un error frecuente: dividir sensibilidad entre especificidad ($s/e$) en lugar de dividir entre $\\alpha=1-e$. La opción A invierte el cociente ($e/s$). La opción B es incorrecta: a diferencia del VPP y el VPN, el LR —igual que $s$ y $e$— es una propiedad intrínseca del test que no requiere la prevalencia para calcularse (la probabilidad a priori del 12% se usaría después, junto con el LR, para obtener la probabilidad post-test mediante el odds)."
+    },
+    {
+      "question": "Según el material del curso, ¿qué característica debería priorizarse al elegir un test de tamizaje (screening) para una enfermedad grave pero tratable (como la tuberculosis o un linfoma), y cuál al elegir un test confirmatorio para una condición donde un falso positivo tiene consecuencias graves (como el VIH/SIDA)?",
+      "options": [
+        "En ambos casos debe priorizarse un LR− cercano a 1, ya que indica que el test es muy confiable en cualquier contexto",
+        "Screening: alta especificidad (para no generar sobrediagnóstico); confirmación: alta sensibilidad (para no dejar pasar ningún caso)",
+        "Screening: alta sensibilidad (para no dejar enfermos sin detectar); confirmación: alta especificidad (para evitar falsos positivos)",
+        "En ambos casos debe priorizarse únicamente el VPP, ya que es el único indicador relevante para la práctica clínica"
+      ],
+      "correctIndex": 2,
+      "explanation": "Las pruebas de screening deben tener alta sensibilidad para captar a la mayor cantidad posible de enfermos (minimizar falsos negativos), sobre todo cuando no diagnosticar a tiempo puede ser fatal pero la enfermedad es tratable. Las pruebas confirmatorias deben tener alta especificidad para minimizar falsos positivos, especialmente cuando etiquetar erróneamente a un sano como enfermo acarrea consecuencias físicas, psicológicas o económicas graves: opción C. La opción B invierte los roles. La opción D es incorrecta porque el VPP por sí solo no refleja la capacidad intrínseca del test (depende de la prevalencia y no permite comparar el mismo test entre poblaciones distintas). La opción A es incorrecta: un LR− cercano a 1 indica que el resultado negativo no aporta información útil (test poco discriminativo); lo deseable es un LR− cercano a 0."
+    }
+  ]
+}

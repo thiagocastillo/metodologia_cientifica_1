@@ -80,6 +80,7 @@ const topics = [
             { id: 'repaso-apuntes', title: 'Apuntes de Clase', file: './content/repaso/apuntes-clase.md' },
             { id: 'repaso-slides', title: 'Diapositivas: Repaso', file: './content/repaso/repaso-slides.md' },
             { id: 'repaso-probabilidad-slides', title: 'Diapositivas: Probabilidad', file: './content/repaso/probabilidad-slides.md' },
+            { id: 'quiz-repaso', title: '🎯 Autoevaluación', file: './content/quiz/repaso.json', quiz: true },
         ]
     },
     {
@@ -89,6 +90,7 @@ const topics = [
             { id: 'discretas-binomial', title: 'Teoría: Distribución Binomial', file: './content/discretas/teoria-binomial-normal.md' },
             { id: 'discretas-poisson', title: 'Teoría: Distribución de Poisson', file: './content/discretas/teoria-poisson.md' },
             { id: 'discretas-slides', title: 'Diapositivas: Binomial y Poisson', file: './content/discretas/slides-binomial-poisson.md' },
+            { id: 'quiz-discretas', title: '🎯 Autoevaluación', file: './content/quiz/discretas.json', quiz: true },
         ]
     },
     {
@@ -99,6 +101,7 @@ const topics = [
             { id: 'continuas-normal2', title: 'Diapositivas: Distribución Normal II', file: './content/continuas/slides-normal-2.md' },
             { id: 'continuas-dn3', title: 'Diapositivas: Distribución Normal III', file: './content/continuas/slides-clase-dn3.md' },
             { id: 'continuas-tlc', title: 'Teorema del Límite Central', file: './content/continuas/teorema-limite-central.md' },
+            { id: 'quiz-continuas', title: '🎯 Autoevaluación', file: './content/quiz/continuas.json', quiz: true },
         ]
     },
     {
@@ -107,6 +110,7 @@ const topics = [
             { id: 'inferencia-apuntes', title: 'Apuntes de Clase', file: './content/inferencia/apuntes-clase.md' },
             { id: 'inferencia-estimacion', title: 'Teoría: Inferencia y Estimación', file: './content/inferencia/teoria-estimacion.md' },
             { id: 'inferencia-proporciones', title: 'Aclaraciones: Estimación de Proporciones', file: './content/inferencia/aclaraciones-proporciones.md' },
+            { id: 'quiz-inferencia', title: '🎯 Autoevaluación', file: './content/quiz/inferencia.json', quiz: true },
         ]
     },
     {
@@ -114,6 +118,7 @@ const topics = [
         items: [
             { id: 'diagnostico-apuntes', title: 'Apuntes de Clase', file: './content/diagnostico/apuntes-clase.md' },
             { id: 'diagnostico-teoria', title: 'Teoría: Procedimientos Diagnósticos', file: './content/diagnostico/teoria-procedimientos.md' },
+            { id: 'quiz-diagnostico', title: '🎯 Autoevaluación', file: './content/quiz/diagnostico.json', quiz: true },
         ]
     },
     {
@@ -121,6 +126,7 @@ const topics = [
         items: [
             { id: 'contraste-apuntes', title: 'Apuntes de Clase', file: './content/contraste/apuntes-clase.md' },
             { id: 'contraste-teoria', title: 'Teoría: Contraste para Medias', file: './content/contraste/teoria-contraste-medias.md' },
+            { id: 'quiz-contraste', title: '🎯 Autoevaluación', file: './content/quiz/contraste.json', quiz: true },
         ]
     },
     {
@@ -131,6 +137,7 @@ const topics = [
             { id: 'avanzado-independencia', title: 'Prueba de Independencia (Chi²)', file: './content/avanzado/prueba-independencia.md' },
             { id: 'avanzado-riesgo', title: 'Riesgo: OR y RR', file: './content/avanzado/riesgo.md' },
             { id: 'avanzado-correlacion', title: 'Correlación', file: './content/avanzado/correlacion.md' },
+            { id: 'quiz-avanzado', title: '🎯 Autoevaluación', file: './content/quiz/avanzado.json', quiz: true },
         ]
     },
     {
@@ -415,6 +422,137 @@ function renderMarkdownWithMath(text) {
     return html;
 }
 
+function escapeHtml(str) {
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+}
+
+/** Renderiza texto corto (pregunta/opción/explicación de quiz) con soporte de LaTeX, sin pasar por marked (para no envolver en <p>). */
+function renderInlineMath(text) {
+    if (!text) return '';
+    const mathStore = [];
+
+    const store = (expr, displayMode) => {
+        const idx = mathStore.length;
+        let html;
+        try { html = katex.renderToString(expr.trim(), { displayMode, throwOnError: false }); }
+        catch (e) { html = escapeHtml(expr); }
+        mathStore.push(html);
+        return `@@MATH${idx}@@`;
+    };
+
+    // Extraemos las fórmulas ANTES de escapar el texto plano, para no corromper
+    // literales como "<" ">" dentro del LaTeX al convertirlos a &lt;/&gt;.
+    let out = String(text);
+    out = out.replace(/\$\$([\s\S]+?)\$\$/g, (m, expr) => store(expr, true));
+    out = out.replace(/\$([^\$\n]+?)\$/g, (m, expr) => store(expr, false));
+    out = escapeHtml(out);
+    out = out.replace(/@@MATH(\d+)@@/g, (m, idx) => mathStore[parseInt(idx, 10)]);
+    return out;
+}
+
+function getQuizScores() {
+    try { return JSON.parse(localStorage.getItem('mc1-quiz-scores')) || {}; }
+    catch (e) { return {}; }
+}
+
+function saveQuizScore(id, score, total) {
+    const scores = getQuizScores();
+    const prevBest = scores[id] ? scores[id].score : -1;
+    if (score > prevBest) {
+        scores[id] = { score, total };
+        localStorage.setItem('mc1-quiz-scores', JSON.stringify(scores));
+    }
+}
+
+/** Construye la UI interactiva de un quiz (preguntas de opción múltiple con corrección + explicación inmediata). */
+function renderQuiz(data, quizId) {
+    const container = document.createElement('div');
+    container.className = 'quiz-container';
+
+    const total = data.questions.length;
+    const best = getQuizScores()[quizId];
+
+    const intro = document.createElement('div');
+    intro.className = 'quiz-intro';
+    intro.innerHTML = `
+        <h1>${escapeHtml(data.title || 'Autoevaluación')}</h1>
+        <p class="quiz-subtitle">Elegí una opción en cada pregunta: te digo al instante si acertaste o no, y por qué &mdash; podés reintentar el quiz las veces que quieras.</p>
+        <div class="quiz-score-bar">
+            <div class="quiz-score-info">
+                <span class="quiz-score-current">Puntaje: <strong id="quiz-score-${quizId}">0</strong> / ${total}</span>
+                ${best ? `<span class="quiz-score-best">Mejor puntaje: ${best.score} / ${best.total}</span>` : ''}
+            </div>
+            <button class="quiz-retry-btn" type="button"><i class="fa-solid fa-rotate-right"></i> Reiniciar</button>
+        </div>
+    `;
+    container.appendChild(intro);
+
+    let score = 0;
+    let answeredCount = 0;
+    const scoreEl = intro.querySelector(`#quiz-score-${quizId}`);
+
+    data.questions.forEach((q, qi) => {
+        const card = document.createElement('div');
+        card.className = 'quiz-question';
+
+        const qHeader = document.createElement('div');
+        qHeader.className = 'quiz-question-text';
+        qHeader.innerHTML = `<span class="quiz-question-number">${qi + 1}</span><div>${renderInlineMath(q.question)}</div>`;
+        card.appendChild(qHeader);
+
+        const optionsWrap = document.createElement('div');
+        optionsWrap.className = 'quiz-options';
+
+        const explanation = document.createElement('div');
+        explanation.className = 'quiz-explanation';
+
+        let answered = false;
+
+        q.options.forEach((opt, oi) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'quiz-option';
+            btn.innerHTML = `<span class="quiz-option-marker">${String.fromCharCode(65 + oi)}</span><span>${renderInlineMath(opt)}</span>`;
+            btn.onclick = () => {
+                if (answered) return;
+                answered = true;
+                answeredCount++;
+                const isCorrect = oi === q.correctIndex;
+                btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+                if (!isCorrect) {
+                    optionsWrap.children[q.correctIndex].classList.add('correct');
+                }
+                [...optionsWrap.children].forEach(c => c.classList.add('disabled'));
+                explanation.classList.add(isCorrect ? 'is-correct' : 'is-incorrect');
+                explanation.innerHTML = `<i class="fa-solid ${isCorrect ? 'fa-circle-check' : 'fa-circle-xmark'}"></i><div>${renderInlineMath(q.explanation)}</div>`;
+                if (isCorrect) {
+                    score++;
+                    scoreEl.textContent = score;
+                }
+                card.classList.add('answered');
+                if (answeredCount === total) {
+                    saveQuizScore(quizId, score, total);
+                }
+            };
+            optionsWrap.appendChild(btn);
+        });
+
+        card.appendChild(optionsWrap);
+        card.appendChild(explanation);
+        container.appendChild(card);
+    });
+
+    intro.querySelector('.quiz-retry-btn').onclick = () => {
+        const fresh = renderQuiz(data, quizId);
+        container.replaceWith(fresh);
+    };
+
+    return container;
+}
+
 async function loadTopic(id) {
     const topic = allItems.find(t => t.id === id);
     if (!topic) return;
@@ -437,6 +575,20 @@ async function loadTopic(id) {
     contentWrapper.scrollTop = 0;
 
     try {
+        if (topic.quiz) {
+            const fetchUrl = topic.file + '?v=' + Date.now();
+            const fullUrl = new URL(topic.file, window.location.href).href;
+            const response = await fetch(fetchUrl);
+            if (!response.ok) {
+                throw new Error(`Error ${response.status}: ${response.statusText} (URL: ${fullUrl})`);
+            }
+            const data = await response.json();
+            markdownContent.innerHTML = '';
+            markdownContent.appendChild(renderQuiz(data, id));
+            markdownContent.classList.add('fade-in');
+            return;
+        }
+
         let text = '';
         if (topic.virtual) {
             text = virtualDocuments[id] ? virtualDocuments[id].markdown : '# Contenido no disponible';

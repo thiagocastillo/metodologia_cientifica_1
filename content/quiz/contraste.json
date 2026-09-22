@@ -1,0 +1,93 @@
+{
+  "title": "Autoevaluación: Contraste de Hipótesis",
+  "questions": [
+    {
+      "question": "Un investigador quiere probar si un nuevo fármaco reduce la presión arterial promedio respecto al valor de referencia de 140 mmHg (se espera específicamente una reducción). ¿Cuál es el planteo correcto de las hipótesis?",
+      "options": [
+        "$H_0: \\mu < 140 \\qquad H_1: \\mu = 140$",
+        "$H_0: \\mu = 140 \\qquad H_1: \\mu \\neq 140$",
+        "$H_0: \\mu = 140 \\qquad H_1: \\mu < 140$",
+        "$H_0: \\mu > 140 \\qquad H_1: \\mu < 140$"
+      ],
+      "correctIndex": 2,
+      "explanation": "La hipótesis nula siempre se plantea con el signo de igualdad ($\\mu = \\mu_0$), ya que sobre ese valor se calcula el estadístico de prueba. Como el investigador espera específicamente una reducción, la evidencia a favor de $H_1$ se busca en valores menores a 140, dando un contraste unilateral con cola a la izquierda: $H_1: \\mu < 140$. Es incorrecto escribir $H_0$ únicamente como una desigualdad (opción con $\\mu<140$ como $H_0$), porque el estadístico se calcula asumiendo igualdad con $\\mu_0$. Plantear $H_1: \\mu \\neq 140$ correspondería a un contraste bilateral, que se usa cuando no hay una dirección esperada — aquí sí la hay. Y $H_0: \\mu > 140$ invierte el sentido del valor de referencia que se quiere contrastar."
+    },
+    {
+      "question": "En un contraste de hipótesis, el error de tipo I consiste en:",
+      "options": [
+        "No rechazar $H_0$ cuando en realidad es falsa",
+        "Rechazar $H_0$ cuando en realidad es falsa",
+        "No rechazar $H_0$ cuando en realidad es verdadera",
+        "Rechazar $H_0$ cuando en realidad es verdadera"
+      ],
+      "correctIndex": 3,
+      "explanation": "El error de tipo I es rechazar $H_0$ cuando en realidad es verdadera (un \"falso positivo\"); su probabilidad es $\\alpha$, el nivel de significación fijado antes del análisis (usualmente 0.05). \"No rechazar $H_0$ cuando es falsa\" es el error de tipo II (probabilidad $\\beta$), el error opuesto — es un error muy común confundir ambos. Las otras dos opciones describen decisiones correctas, no errores: rechazar $H_0$ siendo falsa es un acierto (relacionado con la potencia del test), y no rechazar $H_0$ siendo verdadera también es un acierto."
+    },
+    {
+      "question": "La potencia de un test estadístico ($1-\\beta$) representa:",
+      "options": [
+        "La probabilidad de no rechazar $H_0$ cuando en realidad es verdadera",
+        "La probabilidad de rechazar $H_0$ correctamente cuando en realidad es falsa",
+        "La probabilidad de cometer un error de tipo I",
+        "La probabilidad de aceptar $H_0$ como verdadera"
+      ],
+      "correctIndex": 1,
+      "explanation": "La potencia es la probabilidad de rechazar $H_0$ cuando efectivamente es falsa, es decir, de detectar una diferencia o efecto que realmente existe. \"No rechazar $H_0$ cuando es verdadera\" también es una decisión correcta, pero corresponde a $1-\\alpha$, no a la potencia. \"Cometer error de tipo I\" es directamente $\\alpha$, no $1-\\beta$. Y la última opción describe un error conceptual frecuente: un test de hipótesis nunca permite \"aceptar\" $H_0$ como verdadera, solo rechazarla o no rechazarla."
+    },
+    {
+      "question": "Se desea contrastar la media de una variable con distribución aproximadamente normal usando una muestra de $n=12$ observaciones. Se conoce la desviación estándar muestral $s=3.2$, pero se desconoce la desviación estándar poblacional $\\sigma$. ¿Qué estadístico de prueba corresponde utilizar?",
+      "options": [
+        "$Z$, porque $n$ es un valor pequeño",
+        "$Z$, aproximando $\\sigma$ por $s$, ya que $n>30$",
+        "$t$ de Student, con $gl=n-1=11$, porque $\\sigma$ es desconocida",
+        "$\\chi^2$, porque se trata de una varianza muestral"
+      ],
+      "correctIndex": 2,
+      "explanation": "Cuando la desviación estándar poblacional $\\sigma$ es desconocida y se debe estimar con la muestral $s$, y además el tamaño de muestra es pequeño ($n<30$), corresponde usar el estadístico $t=\\frac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}$ con $gl=n-1=11$. El estadístico $Z$ se usa cuando $\\sigma$ es conocida, o bien cuando $n$ es grande ($n>30$, en cuyo caso se aproxima $\\sigma$ por $s$) — aquí $n=12$, por lo que esa condición no se cumple. El $\\chi^2$ se aplica en otros contextos (independencia, bondad de ajuste), no para contrastar una media."
+    },
+    {
+      "question": "En un contraste con $\\alpha = 0.05$ se obtiene un valor-p = 0.032. ¿Cuál es la decisión correcta?",
+      "options": [
+        "No se rechaza $H_0$, porque el valor-p es menor que $\\alpha$",
+        "Se rechaza $H_0$, porque el valor-p es menor que $\\alpha$",
+        "Se rechaza $H_0$, porque el valor-p es mayor que $\\alpha$",
+        "No se puede decidir sin conocer además el estadístico observado"
+      ],
+      "correctIndex": 1,
+      "explanation": "La regla de decisión establece que si valor-p $\\leq \\alpha$, se rechaza $H_0$. Como $0.032 < 0.05$, corresponde rechazar $H_0$. La primera opción reconoce correctamente la comparación pero invierte la conclusión. La tercera opción se equivoca en la comparación numérica: 0.032 es menor, no mayor, que 0.05. Y no es necesario conocer el estadístico observado para decidir: el valor-p ya resume toda la evidencia muestral en contra de $H_0$ y por sí solo, comparado con $\\alpha$, permite tomar la decisión."
+    },
+    {
+      "question": "Si en un contraste de hipótesis se decide no rechazar $H_0$, esto significa que:",
+      "options": [
+        "No se cuenta con evidencia estadística suficiente para rechazarla, pero no queda demostrado que sea verdadera",
+        "Se acepta que $H_0$ es verdadera con certeza",
+        "Se rechaza automáticamente $H_1$ como imposible",
+        "El valor-p obtenido fue menor que $\\alpha$"
+      ],
+      "correctIndex": 0,
+      "explanation": "No rechazar $H_0$ solo indica que la muestra no aportó evidencia suficiente para rechazarla, no que se haya probado que es verdadera. De hecho, con una muestra más grande el resultado podría cambiar y sí caer en la zona de rechazo. Afirmar que \"se acepta $H_0$ con certeza\" es la interpretación errónea más común de este resultado. Tampoco es correcto decir que $H_1$ queda descartada de forma definitiva, ya que el test solo evalúa la compatibilidad de los datos con $H_0$. Y la última opción describe la condición contraria: si el valor-p fuera menor que $\\alpha$, la decisión sería rechazar $H_0$, no lo opuesto."
+    },
+    {
+      "question": "Un investigador plantea $H_1: \\mu \\neq \\mu_0$ para evaluar si la media de una variable difiere de un valor de referencia, sin especificar de antemano una dirección. ¿Qué tipo de contraste corresponde y cómo se distribuye su región crítica?",
+      "options": [
+        "Contraste unilateral a la derecha, con toda la región crítica en la cola derecha",
+        "Contraste unilateral a la izquierda, con toda la región crítica en la cola izquierda",
+        "Contraste bilateral, con toda la región crítica concentrada en una sola cola",
+        "Contraste bilateral, con la región crítica repartida en las dos colas de la distribución"
+      ],
+      "correctIndex": 3,
+      "explanation": "Cuando $H_1$ plantea \"distinto de\" (≠), la evidencia a favor de $H_1$ puede aparecer en cualquier dirección, por lo que la región crítica se reparte en las dos colas de la distribución (por ejemplo, con $\\alpha=0.05$ en $Z$ se usan los valores críticos $\\pm 1.96$, dejando 0.025 en cada cola). Las dos primeras opciones corresponden a contrastes unilaterales, que se usan cuando $H_1$ plantea \">\" o \"<\" con una dirección definida — no es el caso aquí. Decir \"bilateral pero con toda la región en una sola cola\" es contradictorio, porque \"bilateral\" significa precisamente que hay región crítica en las dos colas."
+    },
+    {
+      "question": "Se desea comparar las medias de dos grupos independientes (tratamiento y control), asumiendo varianzas poblacionales iguales pero desconocidas. ¿Qué estadístico y fórmula corresponde utilizar?",
+      "options": [
+        "$z = \\frac{\\bar{x}-\\bar{y}}{\\sigma\\sqrt{1/n_1+1/n_2}}$, porque se están comparando dos proporciones",
+        "$\\chi^2 = \\sum \\frac{(O_i-E_i)^2}{E_i}$, porque se comparan dos grupos",
+        "$t = \\frac{\\bar{x}-\\bar{y}}{s_p\\sqrt{1/n_1+1/n_2}}$, con $s_p$ la varianza conjunta (pooled) de ambas muestras",
+        "$t = \\frac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}$, comparando cada media por separado contra un valor teórico"
+      ],
+      "correctIndex": 2,
+      "explanation": "Para comparar las medias de dos muestras independientes con varianzas poblacionales iguales pero desconocidas, se usa el estadístico $t=\\frac{\\bar{x}-\\bar{y}}{s_p\\sqrt{1/n_1+1/n_2}}$, donde $s_p=\\sqrt{\\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}}$ es la varianza conjunta ponderada de ambas muestras. La primera opción no corresponde: ni se trata de proporciones ni $\\sigma$ es conocida. El $\\chi^2$ se usa para variables categóricas (independencia o bondad de ajuste), no para comparar medias. Y la fórmula de una sola muestra contra $\\mu_0$ evalúa cada grupo por separado contra un valor teórico, pero no compara directamente las dos medias entre sí."
+    }
+  ]
+}
